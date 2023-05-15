@@ -1,0 +1,51 @@
+@extends('layouts.app')
+
+@section('content')
+    @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <strong>Whoops!</strong> There were some problems with your input.<br><br>
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id], 'class' => 'form']) !!}
+
+    <div class="d-flex justify-content-between align-items-lg-center mb-4">
+        <h2 class="text-light">Edit User</h2>
+
+        <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+    </div>
+
+    <div class="mb-3">
+        <label for="name">{{ __('Name:') }}</label>
+        {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
+    </div>
+
+    <div class="mb-3">
+        <label for="email">{{ __('Email:') }}</label>
+        {!! Form::email('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
+    </div>
+
+    <div class="mb-3">
+        <label for="password">{{ __('Password:') }}</label>
+        {!! Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control']) !!}
+    </div>
+
+    <div class="mb-3">
+        <label for="confirm-password">{{ __('Confirm Password:') }}</label>
+        {!! Form::password('confirm-password', ['placeholder' => 'Confirm Password', 'class' => 'form-control']) !!}
+    </div>
+
+    <div class="">
+        <label for="roles">{{ __('Roles:') }}</label>
+        {!! Form::select('roles[]', $roles, $userRole, ['class' => 'form-control', '']) !!}
+    </div>
+
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+
+    {!! Form::close() !!}
+@endsection

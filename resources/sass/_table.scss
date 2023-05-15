@@ -1,0 +1,14 @@
+table {
+    width: 100%;
+    background-color: $form-background-color;
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    color: #fff;
+    tr:not(:last-child) {
+        border-bottom: 1px solid #fff;
+    }
+    td,
+    th {
+        padding: 10px;
+    }
+}
