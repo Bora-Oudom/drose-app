@@ -1,0 +1,19 @@
+.blog {
+    background: $form-background-color;
+    padding: 1rem 1rem 1rem 2rem;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    &-title {
+        color: $primary-color;
+        font-weight: 900;
+        text-transform: uppercase;
+    }
+    &-body {
+        color: $primary-color;
+        p {
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+    }
+}

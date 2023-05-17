@@ -1,5 +1,4 @@
 @extends('layouts.app')
-
 @section('content')
     <div class="container">
         <div class="row">
@@ -40,9 +39,13 @@
 
                     </td>
                     <td>
-                        {{-- <a class="btn btn-info" href="{{ route('users.show', $user->id) }}">Show</a> --}}
                         <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a>
-                        {!! Form::open(['method' => 'DELETE', 'route' => ['users.destroy', $user->id], 'style' => 'display:inline']) !!}
+                        {!! Form::open([
+                            'method' => 'DELETE',
+                            'route' => ['users.destroy', $user->id],
+                            'style' => 'display:inline',
+                            'id' => 'delete-form',
+                        ]) !!}
                         {!! Form::submit('Delete', [
                             'class' => 'btn btn-danger delete',
                             'data-confirm' => 'Are you sure to delete this user',
@@ -59,18 +62,3 @@
     {{-- This code will render a pagination control for the $data object --}}
     {!! $data->render() !!}
 @endsection
-@push('footer-scripts')
-    <script type="text/javascript">
-        var deleteLinks = document.querySelectorAll('.delete');
-
-        for (var i = 0; i < deleteLinks.length; i++) {
-            deleteLinks[i].addEventListener('click', function(event) {
-                event.preventDefault();
-                var choice = confirm(this.getAttribute('data-confirm'));
-                if (choice) {
-                    return ()
-                }
-            });
-        }
-    </script>
-@endpush

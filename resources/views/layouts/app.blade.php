@@ -8,7 +8,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'DBlog') }}</title>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -27,7 +27,7 @@
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'DBlog') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -40,7 +40,6 @@
                     <ul class="navbar-nav me-auto">
 
                     </ul>
-
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ms-auto">
                         <!-- Authentication Links -->
@@ -55,6 +54,9 @@
                                 <li><a class="nav-link" href="{{ route('users.index') }}">Manage Users</a></li>
                                 <li><a class="nav-link" href="{{ route('register') }}">Create User</a></li>
                             @endcan
+
+                            <li><a class="nav-link" href="{{ route('blogs.create') }}">Create Blogs</a></li>
+
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -101,6 +103,24 @@
 
     </div>
     @stack('footer-scripts')
+    <script type="module">
+        // Get the delete button element
+        const deleteButton = $('.delete');
+
+        // Add a click event listener to the button
+        $(deleteButton).click(function(e) {
+            // Prevent the default form submission behavior
+            e.preventDefault();
+            // Ask the user for confirmation
+            const result = confirm('Are you sure?');
+
+            // If the user confirms
+            if (result) {
+                // Submit the delete form
+                $('#delete-form').submit();
+            }
+        });
+    </script>
 </body>
 
 </html>

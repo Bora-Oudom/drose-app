@@ -3,9 +3,9 @@ table {
     background-color: $form-background-color;
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    color: #fff;
+    color: $primary-color;
     tr:not(:last-child) {
-        border-bottom: 1px solid #fff;
+        border-bottom: 1px solid $primary-color;
     }
     td,
     th {

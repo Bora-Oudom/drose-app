@@ -16,7 +16,7 @@
     <div class="d-flex justify-content-between align-items-lg-center mb-4">
         <h2 class="text-light">Edit User</h2>
 
-        <a class="btn btn-primary" href="{{ route('users.index') }}"> Back</a>
+        <a class="btn btn-secondary text-light" href="{{ route('users.index') }}"> Back</a>
     </div>
 
     <div class="mb-3">

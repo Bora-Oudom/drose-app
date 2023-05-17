@@ -19,8 +19,16 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::group(['middleware' => ['auth']], function() {
-    Route::resource('roles', \App\Http\Controllers\RoleController::class);
+//User Controller
+Route::group(['middleware' => ['auth', 'permission::all']], function() {
     Route::resource('users', \App\Http\Controllers\UserController::class);
+});
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('users/{user}', [\App\Http\Controllers\UserController::class, 'show'])->name('users.show');
+});
+
+//Post Controller
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('blogs', \App\Http\Controllers\BlogController::class);
 });
 

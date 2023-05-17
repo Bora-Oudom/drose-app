@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Blog;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
@@ -13,10 +14,9 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('permission:list-user|edit-user|create-user|delete-user', ['only' => ['index', 'show']]);
-        $this->middleware('permission:create-user',['only' => ['create', 'store']]);
-        $this->middleware('permission:edit-user',['only' => ['edit', 'update']]);
-        $this->middleware('permission:delete-user',['only' => ['destroy']]);
+        // $this->middleware('permission:create-user',['only' => ['create', 'store']]);
+        // $this->middleware('permission:edit-user',['only' => ['edit', 'update']]);
+        // $this->middleware('permission:delete-user',['only' => ['destroy']]);
     }
 
     /**
@@ -65,7 +65,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::find($id);
+        $user = User::with('blogs')->find($id);
         return view('users.show', ['user' => $user]);
         // return redirect()->route('users.show', ['user' => $user]);
     }
