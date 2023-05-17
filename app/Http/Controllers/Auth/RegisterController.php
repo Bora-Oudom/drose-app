@@ -41,6 +41,8 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        // $this->middleware('permission:list-user|edit-user|create-user|delete-user', ['only' => ['index', 'show']]);
+        $this->middleware('permission:create-user');
     }
 
     /**

@@ -4,21 +4,21 @@
     justify-content: space-around;
     align-items: center;
     &-brand {
-        color: #fff;
+        color: $primary-color;
         font-size: 2em;
         transition: 0.5s ease-in-out;
         &:hover {
-            color: #fff;
+            color: $primary-color;
             opacity: 0.7;
         }
     }
 
     .nav-link {
-        color: #fff;
+        color: $primary-color;
         font-size: 1em;
         transition: 0.5s ease-in-out;
         &:hover {
-            color: #fff;
+            color: $primary-color;
             opacity: 0.7;
         }
     }

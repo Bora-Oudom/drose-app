@@ -47,8 +47,8 @@ class User extends Authenticatable
     /**
      * Get the User that owns the Roles.
      */
-    public function Role(): HasMany
+    public function blogs(): HasMany
     {
-        return $this->hasMany(Role::class);
+        return $this->hasMany(Blog::class);
     }
 }

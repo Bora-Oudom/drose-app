@@ -13,5 +13,22 @@
         </div>
     </div>
 
-    <h2 class="status">{{ __('You are logged in!') }}</h2>
+    {{-- <h2 class="status">{{ __('Welcome Back') }}</h2> --}}
+    @foreach ($blogs as $blog)
+        <div class="container">
+            <div class="blog">
+                <div class="blog-title">
+                    <h2>
+                        {{ $blog->title }}
+                    </h2>
+                </div>
+                <div class="blog-body">
+                    <p>
+                        {{ $blog->description }}
+                    </p>
+                </div>
+                <a class="" href="{{ route('blogs.show', $blog->id) }}">read more</a>
+            </div>
+        </div>
+    @endforeach
 @endsection

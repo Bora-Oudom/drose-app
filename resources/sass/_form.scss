@@ -1,32 +1,27 @@
-$form-background-color: rgba(255, 255, 255, 0.13);
-$input-background-color: rgba(255, 255, 255, 0.07);
-$primary-color: #080710;
-$secondary-color: #ffffff;
-
-.background {
-    width: 430px;
-    height: 520px;
-    position: absolute;
-    transform: translate(-50%, -50%);
-    left: 50%;
-    top: 50%;
-}
-.background .shape {
-    height: 200px;
-    width: 200px;
-    position: absolute;
-    border-radius: 50%;
-}
-.shape:first-child {
-    background: linear-gradient(#1845ad, #23a2f6);
-    left: -80px;
-    top: -80px;
-}
-.shape:last-child {
-    background: linear-gradient(to right, #ff512f, #f09819);
-    right: -30px;
-    bottom: -80px;
-}
+// .background {
+//     width: 430px;
+//     height: 520px;
+//     position: absolute;
+//     transform: translate(-50%, -50%);
+//     left: 50%;
+//     top: 50%;
+// }
+// .background .shape {
+//     height: 200px;
+//     width: 200px;
+//     position: absolute;
+//     border-radius: 50%;
+// }
+// .shape:first-child {
+//     background: linear-gradient(#1845ad, #23a2f6);
+//     left: -80px;
+//     top: -80px;
+// }
+// .shape:last-child {
+//     background: linear-gradient(to right, #ff512f, #f09819);
+//     right: -30px;
+//     bottom: -80px;
+// }
 .form {
     // height: 550px;
     width: 400px;
@@ -41,6 +36,87 @@ $secondary-color: #ffffff;
     box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
     padding: 50px 35px;
 
+    // background: #191c29;
+    // width: var(--card-width);
+    // height: var(--card-height);
+    // padding: 3px;
+    // position: relative;
+    // border-radius: 6px;
+    // justify-content: center;
+    // align-items: center;
+    // text-align: center;
+    // display: flex;
+    // font-size: 1.5em;
+    // color: rgb(88 199 250 / 0%);
+    // cursor: pointer;
+    // font-family: cursive;
+    // &:hover {
+    //     color: rgb(88 199 250 / 100%);
+    //     transition: color 1s;
+    // }
+    // &:hover:before,
+    // &:hover:after {
+    //     animation: none;
+    //     opacity: 0;
+    // }
+
+    // &::before {
+    //     content: '';
+    //     width: 104%;
+    //     height: 102%;
+    //     border-radius: 8px;
+    //     background-image: linear-gradient(
+    //         var(--rotate),
+    //         #5ddcff,
+    //         #3c67e3 43%,
+    //         #4e00c2
+    //     );
+    //     position: absolute;
+    //     z-index: -1;
+    //     top: -1%;
+    //     left: -2%;
+    //     animation: spin 2.5s linear infinite;
+    // }
+
+    // &::after {
+    //     position: absolute;
+    //     content: '';
+    //     top: calc(var(--card-height) / 6);
+    //     left: 0;
+    //     right: 0;
+    //     z-index: -1;
+    //     height: 100%;
+    //     width: 100%;
+    //     margin: 0 auto;
+    //     transform: scale(0.8);
+    //     filter: blur(calc(var(--card-height) / 6));
+    //     background-image: linear-gradient(
+    //         var(--rotate),
+    //         #5ddcff,
+    //         #3c67e3 43%,
+    //         #4e00c2
+    //     );
+    //     opacity: 1;
+    //     transition: opacity 0.5s;
+    //     animation: spin 2.5s linear infinite;
+    // }
+
+    // @keyframes spin {
+    //     0% {
+    //         --rotate: 0deg;
+    //     }
+    //     100% {
+    //         --rotate: 360deg;
+    //     }
+    // }
+
+    a {
+        color: #212534;
+        text-decoration: none;
+        font-family: sans-serif;
+        font-weight: bold;
+        margin-top: 2rem;
+    }
     h3 {
         font-size: 32px;
         font-weight: 500;
@@ -53,7 +129,7 @@ $secondary-color: #ffffff;
     select,
     button {
         font-family: 'Poppins', sans-serif;
-        color: $secondary-color;
+        color: $primary-color;
         letter-spacing: 0.5px;
     }
 
@@ -64,7 +140,8 @@ $secondary-color: #ffffff;
     }
 
     input,
-    select {
+    select,
+    textarea {
         display: block;
         height: 50px;
         width: 100%;
@@ -72,17 +149,26 @@ $secondary-color: #ffffff;
         border-radius: 3px;
         border: none;
         padding: 0 10px;
-        margin-top: 8px;
+        // margin-top: 8px;
         font-size: 14px;
         font-weight: 300;
 
         &::placeholder {
             color: #e5e5e5;
         }
+        &:focus {
+            background-color: $input-background-color;
+            color: #fff;
+        }
     }
     input[type='checkbox'] {
+        position: absolute;
+        top: -10px;
+        left: 25%;
+        transform: translateX(-50%);
         height: 20px;
         width: 20px;
+        font-size: 40px;
     }
     button {
         margin: 30px 0 0;
@@ -94,5 +180,8 @@ $secondary-color: #ffffff;
         font-weight: 600;
         border-radius: 5px;
         border: none;
+    }
+    &-check {
+        position: relative;
     }
 }
