@@ -76,6 +76,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             // New roles column with default value of 'user'
             'roles' => $data['roles'], 
+            // 'profile' => $data['profile']
         ]);
     }
 }

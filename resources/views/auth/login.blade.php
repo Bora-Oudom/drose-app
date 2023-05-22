@@ -17,13 +17,13 @@
             @enderror
         </div>
 
-        <div class="row mb-3">
-
+        <div class="row mb-3 position-relative">
             <label for="password">{{ __('Password') }}</label>
 
             <input id="password" type="password" @error('password') is-invalid @enderror name="password" required
                 autocomplete="current-password" placeholder="Password">
-
+            <i class="fa-solid fa-eye-slash hide"></i>
+            <i class="fa-solid fa-eye unhide"></i>
             @error('password')
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>

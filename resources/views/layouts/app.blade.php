@@ -18,6 +18,15 @@
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'
         type='text/css' />
 
+    {{-- Dropzone --}}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"
+        integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"
+        integrity="sha512-U2WE1ktpMTuRBPoCFDzomoIorbOyUv0sP8B+INA3EzNAhehbzED1rOJg6bCqPf/Tuposxb5ja/MAUnC8THSbLQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -104,11 +113,9 @@
     </div>
     @stack('footer-scripts')
     <script type="module">
-        // Get the delete button element
-        const deleteButton = $('.delete');
-
+        $('.hide').hide();
         // Add a click event listener to the button
-        $(deleteButton).click(function(e) {
+        $('.delete').click(function(e) {
             // Prevent the default form submission behavior
             e.preventDefault();
             // Ask the user for confirmation
@@ -120,6 +127,19 @@
                 $('#delete-form').submit();
             }
         });
+        $('.unhide').click(function (e) { 
+            e.preventDefault();
+            $(this).hide();
+            $(this).siblings('.hide').show();
+            $(this).siblings('#password').attr('type', 'text');
+        });
+        $('.hide').click(function (e) { 
+            e.preventDefault();
+            $(this).hide();
+            $(this).siblings('.unhide').show();
+            $(this).siblings('#password').attr('type', 'password');
+        });
+
     </script>
 </body>
 

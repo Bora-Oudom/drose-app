@@ -1,19 +1,100 @@
 .blog {
-    background: $form-background-color;
-    padding: 1rem 1rem 1rem 2rem;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    &-title {
-        color: $primary-color;
-        font-weight: 900;
-        text-transform: uppercase;
-    }
-    &-body {
-        color: $primary-color;
-        p {
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            overflow: hidden;
+    &-container {
+        background-color: $form-background-color;
+        overflow: hidden;
+        // backdrop-filter: blur(10px);
+        border-radius: 5px;
+        // box-shadow: hsla(0, 0, 0, 0.2) 0 4px 2px -2px;
+        font-family: 'adelle-sans', sans-serif;
+        font-weight: 100;
+        margin: 48px auto;
+        width: 20rem;
+        box-shadow: 0 0 10px #111;
+        position: relative;
+        @media screen and (min-width: 480px) {
+            width: 28rem;
         }
+        @media screen and (min-width: 767px) {
+            width: 40rem;
+        }
+        @media screen and (min-width: 959px) {
+            width: 50rem;
+        }
+        &-bg {
+            position: absolute;
+            z-index: -1;
+            img {
+                width: 100%;
+            }
+            // top: 50%;
+            // left: 50%;
+            // transform: translate(-50%, -50%);
+        }
+    }
+
+    // Blog header
+    //-------------------------
+    &-cover {
+        position: relative;
+        border-radius: 5px 5px 0 0;
+        height: 15rem;
+        overflow: hidden;
+        img {
+            width: 100%;
+        }
+    }
+    &-author,
+    &-author--no-cover {
+        display: flex;
+        position: absolute;
+        z-index: 10;
+        top: 10%;
+        left: 5%;
+        margin: 0 auto;
+        padding-top: 0.125rem;
+        width: 80%;
+    }
+    // &-author h3::before,
+    // &-author--no-cover h3::before {
+    //     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/17779/russ.jpeg');
+    //     background-size: cover;
+    //     border-radius: 50%;
+    //     content: ' ';
+    //     display: inline-block;
+    //     height: 32px;
+    //     margin-right: 0.5rem;
+    //     position: relative;
+    //     top: 8px;
+    //     width: 32px;
+    // }
+    &-author h3 {
+        color: #fff;
+        font-weight: 100;
+    }
+    &-author--no-cover h3 {
+        color: lighten(#333, 40%);
+        font-weight: 100;
+    }
+    &-author img {
+        box-shadow: 0 0 10px #fff;
+        width: 32px;
+        height: 32px;
+        margin-right: 10px;
+        border-radius: 50%;
+    }
+
+    // Blog body
+    //-------------------------
+    &-body {
+        position: relative;
+        color: #fff;
+        // mix-blend-mode: difference;
+        margin: 0 auto;
+        padding: 10px 0;
+        width: 80%;
+    }
+    &-title h1 a {
+        // color: #333;
+        font-weight: 100;
     }
 }

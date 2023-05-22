@@ -15,20 +15,25 @@
 
     {{-- <h2 class="status">{{ __('Welcome Back') }}</h2> --}}
     @foreach ($blogs as $blog)
-        <div class="container">
-            <div class="blog">
-                <div class="blog-title">
-                    <h2>
-                        {{ $blog->title }}
-                    </h2>
-                </div>
-                <div class="blog-body">
-                    <p>
-                        {{ $blog->description }}
-                    </p>
-                </div>
-                <a class="" href="{{ route('blogs.show', $blog->id) }}">read more</a>
+        <div class="blog-container d-flex justify-content-between align-items-end">
+            <div class="blog-container-bg">
+                <img src="{{ url('image/' . $blog->image) }}">
             </div>
+            <div class="blog-body">
+                <div class="blog-title">
+                    <h1>{{ $blog->title }}</h1>
+                </div>
+                <div class="blog-summary">
+                    <p
+                        style="
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;">
+                        {{ $blog->description }}</p>
+                </div>
+            </div>
+            <a class="pe-4 pb-2" href="{{ route('blogs.show', $blog->id) }}">read more</a>
+
         </div>
     @endforeach
 @endsection

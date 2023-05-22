@@ -14,7 +14,7 @@ class Role extends Model
     /**
      * Get the User that owns the Roles.
      */
-    public function User(): BelongsTo
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

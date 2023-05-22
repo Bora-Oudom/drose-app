@@ -27,8 +27,8 @@ class AdminSeeder extends Seeder
         //     'password' => Hash::make('marinax')
         // ]);
 
-        $adminRole = Role::create(['name' => 'admin']);
         $userRole = Role::create(['name' => 'user']);
+        $adminRole = Role::create(['name' => 'admin']);
 
         $permissions = Permission::whereIn('name', ['create-users', 'edit-users', 'delete-users'])->get();
         //pluck('id', 'id')->all();
