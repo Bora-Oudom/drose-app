@@ -26,6 +26,7 @@ Route::group(['middleware' => ['auth', 'permission::all']], function() {
 Route::group(['middleware' => ['auth']], function() {
     Route::get('users/{user}', [\App\Http\Controllers\UserController::class, 'show'])->name('users.show');
     Route::get('users/{user}/edit', [\App\Http\Controllers\UserController::class, 'edit'])->name('users.edit');
+    Route::patch('users/{user}', [\App\Http\Controllers\UserController::class, 'update'])->name('users.update');
 });
 
 //Post Controller

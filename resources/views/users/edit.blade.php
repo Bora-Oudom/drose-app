@@ -11,7 +11,12 @@
             </ul>
         </div>
     @endif
-    {!! Form::model($user, ['method' => 'PATCH', 'route' => ['users.update', $user->id], 'class' => 'form']) !!}
+    {!! Form::model($user, [
+        'method' => 'PATCH',
+        'route' => ['users.update', $user->id],
+        'class' => 'form',
+        'enctype' => 'multipart/form-data',
+    ]) !!}
 
     <div class="d-flex justify-content-between align-items-lg-center mb-4">
         <h2 class="text-light">Edit User</h2>
