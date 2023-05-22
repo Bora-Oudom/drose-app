@@ -85,11 +85,11 @@ class UserController extends Controller
         // Validate input fields
 
         $request->validate([
-            'name' => 'required',
+            'name' => 'required|max:255',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required',
-            'profile' => 'nullable|image'
+            'profile' => 'nullable|max:2000'
         ]);
 
         // Get all input data and hash password if needed
@@ -107,33 +107,37 @@ class UserController extends Controller
         $user = User::find($id);
 
         if(!$user) {
-            return redirect()->route('users.index')->with('error', 'User not found');
+            return redirect()->route('home')->with('error', 'User not found');
         }
+
+        // Check if a new profile image was uploaded
         if ($request->hasFile('profile')) {
-            // Delete old profile image file if it exists
-            Storage::delete($user->profile);
-    
-            // Upload new profile image file
-            $path = $request->file('profile')->store('profile');
-            $input['profile'] = $path;
-        } else {
-            unset($input['profile']); // Use default profile image if none is uploaded
+            // Delete old profile image if it exists
+            if ($user->profile !== 'default.jpg') {
+                Storage::delete('profile/'.$user->profile);
+            }
+            // $path = $request->file('profile')->move(public_path('profile'), $input['profile']);
+            $file = $request->file('profile');
+            $filename = uniqid() . '.' . $file->getClientOriginalName();
+            $file->move(public_path('profile'), $filename);
+            $input['profile'] = $filename;
+            
         }
 
         $user->update($input);
-
+        
         // Update user's roles
         $role = $request->input('roles');
 
         $validRole = Role::where('name', $role)->first();
 
         if (!$validRole) {
-            return redirect()->route('users.index')->with('error', 'Role does not exist');
+            return redirect()->route('home')->with('error', 'Role does not exist');
         }
     
         $user->syncRoles([$validRole]);
 
-        return redirect()->route('users.index')->with('success', 'User has been updated');
+        return redirect()->route('home')->with('success', 'User has been updated');
     }
 
     /**
