@@ -8,16 +8,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Spatie\Permission\Models\Role;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        // $this->middleware('permission:create-user',['only' => ['create', 'store']]);
-        // $this->middleware('permission:edit-user',['only' => ['edit', 'update']]);
-        // $this->middleware('permission:delete-user',['only' => ['destroy']]);
-    }
 
     /**
      * Display a listing of the resource.
@@ -93,7 +88,8 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
-            'roles' => 'required'
+            'roles' => 'required',
+            'profile' => 'nullable|image'
         ]);
 
         // Get all input data and hash password if needed
@@ -112,6 +108,16 @@ class UserController extends Controller
 
         if(!$user) {
             return redirect()->route('users.index')->with('error', 'User not found');
+        }
+        if ($request->hasFile('profile')) {
+            // Delete old profile image file if it exists
+            Storage::delete($user->profile);
+    
+            // Upload new profile image file
+            $path = $request->file('profile')->store('profile');
+            $input['profile'] = $path;
+        } else {
+            unset($input['profile']); // Use default profile image if none is uploaded
         }
 
         $user->update($input);

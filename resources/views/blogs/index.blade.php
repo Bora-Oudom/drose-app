@@ -1,15 +1,22 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container d-flex justify-content-center align-items-center">
-        <div class="card mt-5 w-50 ">
-            <div class="card-header text-uppercase">
-                <h1>{{ $blog->title }}</h1>
-                <div class="auther">
-                    <small>{{ $blog->user->name }}</small>
+    <div class="blog-container">
+        <div class="blog-header">
+            <div class="blog-cover">
+                <img src="{{ url('image/' . $blog->image) }}">
+                <div class="blog-author">
+                    <img src="{{ url('profile/' . $blog->user->profile) }}">
+                    <h3>{{ $blog->user->name }}</h3>
                 </div>
             </div>
-            <div class="card-body">
+        </div>
+
+        <div class="blog-body">
+            <div class="blog-title">
+                <h1>{{ $blog->title }}</h1>
+            </div>
+            <div class="blog-summary">
                 <p>{{ $blog->description }}</p>
             </div>
         </div>

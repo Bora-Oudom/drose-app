@@ -32,17 +32,22 @@ class BlogController extends Controller
             'title' => 'required',
             'description' => 'required',
         ]);
-        $blog = new Blog;
+        $blog = new Blog();
         $blog->title = $request->input('title');
         $blog->description = $request->input('description');
         $blog->user_id = auth()->user()->id; // Associate blog with current user
+        
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $filename = /** date('YmdHi') */ uniqid() . '.' . $file->getClientOriginalName();
+            $file->move(public_path('image'), $filename);
+            $blog->image = $filename;
+           
+        }else {
+            // Set a default image filename or any appropriate value
+            $blog->image = 'default.jpg';
+        }
         $blog->save();
-
-        // $input = $request->all();
-
-        // // dd($input);
-        // Blog::create($input);
-
         return redirect()->route('home')->with('success','Blog has been created');
     }
 
