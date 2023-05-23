@@ -1,6 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    @if ($message = Session::get('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <p>{{ $message }}</p>
+        </div>
+    @endif
     <div class="blog-container">
         <div class="blog-header">
             <div class="blog-cover">

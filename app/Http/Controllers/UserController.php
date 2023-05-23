@@ -113,12 +113,13 @@ class UserController extends Controller
         // Check if a new profile image was uploaded
         if ($request->hasFile('profile')) {
             // Delete old profile image if it exists
-            if ($user->profile !== 'default.jpg') {
-                Storage::delete('profile/'.$user->profile);
+            if ($user->profile !== 'default.jpg' || $user->profile !== $user->profile) {
+                // Storage::public_path('profile/'.$user->profile);
+                unlink(public_path('profile/'.$user->profile));
             }
             // $path = $request->file('profile')->move(public_path('profile'), $input['profile']);
             $file = $request->file('profile');
-            $filename = uniqid() . '.' . $file->getClientOriginalName();
+            $filename = uniqid() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('profile'), $filename);
             $input['profile'] = $filename;
             
@@ -132,12 +133,12 @@ class UserController extends Controller
         $validRole = Role::where('name', $role)->first();
 
         if (!$validRole) {
-            return redirect()->route('home')->with('error', 'Role does not exist');
+            return redirect()->route('users.show')->with('error', 'Role does not exist');
         }
     
         $user->syncRoles([$validRole]);
 
-        return redirect()->route('home')->with('success', 'User has been updated');
+        return redirect()->route('users.show', $id)->with('success', 'User has been updated');
     }
 
     /**

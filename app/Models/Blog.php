@@ -18,7 +18,8 @@ class Blog extends Model
     protected $fillable = [
         'title',
         'description',
-        'user_id'
+        'user_id',
+        'image'
     ];
     /**
      * Get the User that owns the Roles.
