@@ -28,6 +28,7 @@
                         <img src="{{ url('profile/' . $user->profile) }}">
                         <h3>{{ $user->name }}</h3>
                     </div>
+                    <a class="btn btn-primary" href="{{ route('blogs.edit', $blog->id) }}">Edit</a>
                 </div>
             </div>
 
