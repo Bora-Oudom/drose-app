@@ -38,9 +38,18 @@
                         @endif
 
                     </td>
-                    <td>
-                        <a class="btn btn-primary" href="{{ route('users.edit', $user->id) }}">Edit</a>
-                        {!! Form::open([
+                    <td class="d-flex justify-content-start align-items-center">
+                        <a class="btn" href="{{ route('users.edit', $user->id) }}">
+                            <i class="fa-solid fa-pencil fa-lg"style="color: #c3c6d1;"></i>
+                        </a>
+                        <form method="POST" action="{{ route('users.destroy', $user->id) }}">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn delete">
+                                <i class="fa-solid fa-trash fa-lg" style="color: #eb3446"></i>
+                            </button>
+                        </form>
+                        {{-- {!! Form::open([
                             'method' => 'DELETE',
                             'route' => ['users.destroy', $user->id],
                             'style' => 'display:inline',
@@ -50,7 +59,7 @@
                             'class' => 'btn btn-danger delete',
                             'data-confirm' => 'Are you sure to delete this user',
                         ]) !!}
-                        {!! Form::close() !!}
+                        {!! Form::close() !!} --}}
 
                     </td>
                 </tr>

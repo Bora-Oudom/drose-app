@@ -17,18 +17,11 @@
     {{-- Fontawsome --}}
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'
         type='text/css' />
-
-    {{-- Dropzone --}}
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.css"
-        integrity="sha512-jU/7UFiaW5UBGODEopEqnbIAHOI8fO6T99m7Tsmqs2gkdujByJfkCbbfPSN4Wlqlb9TGnsuC0YgUgWkRBK7B9A=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.3/dropzone.min.js"
-        integrity="sha512-U2WE1ktpMTuRBPoCFDzomoIorbOyUv0sP8B+INA3EzNAhehbzED1rOJg6bCqPf/Tuposxb5ja/MAUnC8THSbLQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
-
     <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
+
+
+    @stack('header_scripts')
 </head>
 
 <body>
@@ -109,37 +102,37 @@
             <div class="shape"></div>
         </div>
         @yield('content')
-
     </div>
     @stack('footer-scripts')
     <script type="module">
-        $('.hide').hide();
-        // Add a click event listener to the button
-        $('.delete').click(function(e) {
-            // Prevent the default form submission behavior
-            e.preventDefault();
-            // Ask the user for confirmation
-            const result = confirm('Are you sure?');
+        $(document).ready(function() {
+            $('.hide').hide();
+            // Add a click event listener to the button
+            $('.delete').click(function(e) {
+                // Prevent the default form submission behavior
+                // Ask the user for confirmation
+                const result = confirm('Are you sure?');
 
-            // If the user confirms
-            if (result) {
-                // Submit the delete form
-                $('#delete-form').submit();
-            }
+                // If the user confirms
+                if (result) {
+                    // Submit the delete form
+                    $('#delete-form').submit();
+                }
+            });
+            $('.unhide').click(function (e) { 
+                e.preventDefault();
+                $(this).hide();
+                $(this).siblings('.hide').show();
+                $(this).siblings('#password').attr('type', 'text');
+            });
+            $('.hide').click(function (e) { 
+                e.preventDefault();
+                $(this).hide();
+                $(this).siblings('.unhide').show();
+                $(this).siblings('#password').attr('type', 'password');
+            });
+            
         });
-        $('.unhide').click(function (e) { 
-            e.preventDefault();
-            $(this).hide();
-            $(this).siblings('.hide').show();
-            $(this).siblings('#password').attr('type', 'text');
-        });
-        $('.hide').click(function (e) { 
-            e.preventDefault();
-            $(this).hide();
-            $(this).siblings('.unhide').show();
-            $(this).siblings('#password').attr('type', 'password');
-        });
-
     </script>
 </body>
 
