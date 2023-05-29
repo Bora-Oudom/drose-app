@@ -12,9 +12,13 @@
                 <img src="{{ url('image/' . $blog->image) }}">
                 <div class="blog-author">
                     <img src="{{ url('profile/' . $blog->user->profile) }}">
-                    <h3>{{ $blog->user->name }}</h3>
+                    <div class="blog-author-name">
+                        <p>{{ $blog->user->name }}</p>
+                        <small>{{ $blog->created_at->format('M d \a\t g:i A') }}</small>
+                    </div>
                 </div>
             </div>
+
         </div>
 
         <div class="blog-body">

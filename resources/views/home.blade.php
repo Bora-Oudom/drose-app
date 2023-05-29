@@ -32,8 +32,7 @@
                         {{ $blog->description }}</p>
                 </div>
             </div>
-            <a class="pe-4 pb-2" href="{{ route('blogs.show', $blog->id) }}">read more</a>
-
+            <a class="pe-4 pb-2" href="{{ route('blogs.show', $blog->id) }}" style="color: #79E0EE">read more</a>
         </div>
     @endforeach
 @endsection
