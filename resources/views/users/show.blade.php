@@ -16,23 +16,14 @@
                     @endforeach
                 @endif
             </div>
-            <a href="{{ route('users.edit', $user->id) }}"><i class="fa-solid fa-pencil fa-lg"
-                    style="color: #c3c6d1; position: absolute; top: 5%; right: 5%; #fff;"></i></a>
+            <a href="{{ route('users.edit', $user->id) }}">
+                <i class="fa-solid fa-pencil fa-lg"
+                    style="color: #c3c6d1; position: absolute; top: 5%; right: 5%; #fff;"></i>
+            </a>
         </div>
     </div>
-    <div class="blog-container">
-        <div class="owl-carousel owl-theme">
-            @foreach ($user->blogs as $blog)
-                <div class="item">
-
-                </div>
-            @endforeach
-        </div>
-
-        {{-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner"> --}}
-        @foreach ($user->blogs as $blog)
-            {{-- <div class="carousel-item active"> --}}
+    @foreach ($user->blogs as $blog)
+        <div class="blog-container">
             <div class="d-block w-100">
                 <div class="blog-header">
                     <div class="blog-cover">
@@ -52,10 +43,12 @@
                 <div class="blog-body">
                     <div class="blog-title d-flex justify-content-between align-items-end">
                         <h1>{{ $blog->title }}</h1>
-                        <form method="POST" action="{{ route('blogs.destroy', $blog->id) }}">
+                        <form method="POST" action="{{ route('blogs.destroy', $blog->id) }}"
+                            id="delete-form-{{ $blog->id }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn delete">
+                            <input type="hidden" name="blog_id" value="{{ $blog->id }}">
+                            <button type="submit" data-id="{{ $blog->id }}" class="btn delete">
                                 <i class="fa-solid fa-trash fa-lg" style="color: #eb3446"></i>
                             </button>
                         </form>
@@ -65,27 +58,6 @@
                     </div>
                 </div>
             </div>
-            {{-- </div> --}}
-        @endforeach
-
-        {{-- </div> --}}
-        {{-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button> --}}
-        {{-- </div> --}}
-    </div>
+        </div>
+    @endforeach
 @endsection
-{{-- @push('footer-scripts')
-    <script type="module">
-        $( document ).ready(function() {
-            $('.carousel-inner:nth-child(1)').addClass("active");
-        });
-    </script>
-@endpush --}}

@@ -122,7 +122,6 @@ class UserController extends Controller
             $filename = uniqid() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('profile'), $filename);
             $input['profile'] = $filename;
-            
         }
 
         $user->update($input);
@@ -146,7 +145,9 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        User::find($id)->delete();
+        $user = User::find($id);
+        $user->delete();
+        unlink(public_path('profile/' . $user->profile));
         return redirect()->back()->with('success', 'User has been deleted');
     }
 }

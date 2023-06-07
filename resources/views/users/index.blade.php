@@ -6,9 +6,6 @@
                 <div class="pull-left">
                     <h2 class="text-light mt-5">Users Management</h2>
                 </div>
-                {{-- <div class="pull-right">
-                        <a class="btn btn-success" href="{{ route('users.create') }}"> Create New User</a>
-                    </div> --}}
             </div>
         </div>
 
@@ -20,6 +17,7 @@
         <table>
             <tr>
                 <th>No</th>
+                <th>Profile</th>
                 <th>Name</th>
                 <th>Email</th>
                 <th>Roles</th>
@@ -28,6 +26,7 @@
             @foreach ($data as $key => $user)
                 <tr>
                     <td>{{ ++$i }}</td>
+                    <td><img class="w-" src="{{ url('profile/' . $user->profile) }}" alt="{{ $user->profile }}"></td>
                     <td>{{ $user->name }}</td>
                     <td>{{ $user->email }}</td>
                     <td>
@@ -36,31 +35,19 @@
                                 <label class="badge bg-success">{{ $v }}</label>
                             @endforeach
                         @endif
-
                     </td>
                     <td class="d-flex justify-content-start align-items-center">
                         <a class="btn" href="{{ route('users.edit', $user->id) }}">
                             <i class="fa-solid fa-pencil fa-lg"style="color: #c3c6d1;"></i>
                         </a>
-                        <form method="POST" action="{{ route('users.destroy', $user->id) }}">
+                        <form method="POST" action="{{ route('users.destroy', $user->id) }}"
+                            id="delete-form-{{ $user->id }}">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn delete">
+                            <button type="submit" class="btn delete" data-id="{{ $user->id }}">
                                 <i class="fa-solid fa-trash fa-lg" style="color: #eb3446"></i>
                             </button>
                         </form>
-                        {{-- {!! Form::open([
-                            'method' => 'DELETE',
-                            'route' => ['users.destroy', $user->id],
-                            'style' => 'display:inline',
-                            'id' => 'delete-form',
-                        ]) !!}
-                        {!! Form::submit('Delete', [
-                            'class' => 'btn btn-danger delete',
-                            'data-confirm' => 'Are you sure to delete this user',
-                        ]) !!}
-                        {!! Form::close() !!} --}}
-
                     </td>
                 </tr>
             @endforeach

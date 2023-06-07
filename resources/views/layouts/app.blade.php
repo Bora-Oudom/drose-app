@@ -17,11 +17,14 @@
     {{-- Fontawsome --}}
     <link href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css' rel='stylesheet'
         type='text/css' />
+
+    {{-- Dropzone --}}
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.min.css"> --}}
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/sass/app.scss', 'resources/js/app.js'])
 
-
-    @stack('header_scripts')
+    @stack('header-scripts')
 </head>
 
 <body>
@@ -109,14 +112,17 @@
             $('.hide').hide();
             // Add a click event listener to the button
             $('.delete').click(function(e) {
+                e.preventDefault();
+                // console.log($(this).parent().find('input[name=blog_id]').val());
+                // console.log($(this).attr("data-id"));
+                var id=$(this).attr("data-id");
                 // Prevent the default form submission behavior
                 // Ask the user for confirmation
                 const result = confirm('Are you sure?');
-
                 // If the user confirms
                 if (result) {
                     // Submit the delete form
-                    $('#delete-form').submit();
+                    $('#delete-form-' +id).submit();
                 }
             });
             $('.unhide').click(function (e) { 
@@ -124,16 +130,70 @@
                 $(this).hide();
                 $(this).siblings('.hide').show();
                 $(this).siblings('#password').attr('type', 'text');
+                $(this).siblings('#password-confirm').attr('type', 'text');
             });
             $('.hide').click(function (e) { 
                 e.preventDefault();
                 $(this).hide();
                 $(this).siblings('.unhide').show();
                 $(this).siblings('#password').attr('type', 'password');
+                $(this).siblings('#password-confirm').attr('type', 'password');
+
             });
-            
+        });
+        
+    </script>
+    <script type="module">
+        function readFile(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function(e) {
+                var htmlPreview =
+                    '<img width="150" src="' + e.target.result + '" />'
+                    // '<p>' + input.files[0].name + '</p>';
+                var wrapperZone = $(input).parent();
+                var previewZone = $(input).parent().parent().find('.preview-zone');
+                var desc = $(input).siblings('.dropzone-desc');
+                var boxZone = $(input).siblings('.box-body');  //$(input).parent().parent().find('.preview-zone').find('.box').find('.box-body');
+
+                wrapperZone.removeClass('dragover');
+                // previewZone.removeClass('hidden');
+                boxZone.empty();
+                desc.addClass('hidden');
+                boxZone.append(htmlPreview);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        $(".dropzone").change(function() {
+            readFile(this);
+        });
+
+        $('.dropzone-wrapper').on('dragover', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).addClass('dragover');
+        });
+
+        $('.dropzone-wrapper').on('dragleave', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        $(this).removeClass('dragover');
+        });
+
+        $('.remove-preview').on('click', function() {
+        var boxZone = $(this).parents('.preview-zone').find('.box-body');
+        var previewZone = $(this).parents('.preview-zone');
+        var dropzone = $(this).parents('.form-group').find('.dropzone');
+        boxZone.empty();
+        previewZone.addClass('hidden');
+        reset(dropzone);
         });
     </script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script> --}}
 </body>
 
 </html>
