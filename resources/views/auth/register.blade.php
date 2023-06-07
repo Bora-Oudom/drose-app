@@ -46,20 +46,13 @@
 
             <div class="row mb-3 position-relative">
                 <label for="password-confirm">{{ __('Confirm Password') }}</label>
-                <input id="password" type="password" class="form-control" name="password_confirmation" required
+                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
                     autocomplete="new-password" placeholder="Confirm Password">
                 <i class="fa-solid fa-eye-slash hide"></i>
                 <i class="fa-solid fa-eye unhide"></i>
             </div>
             <div class="row mb-3">
                 <label for="role">{{ __('Roles') }}</label>
-                {{-- {!! Form::select('roles[]', $roles, [], ['class' => 'form-control', 'multiple']) !!} --}}
-
-                {{-- <select id="roles[]" class="form-control" multiple>
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role }}">{{ $role }}</option>
-                                        @endforeach
-                                    </select> --}}
 
                 <select id="roles" class="form-control @error('roles') is-invalid @enderror" name="roles">
                     @foreach ($roles as $role)
@@ -69,9 +62,21 @@
                     @endforeach
                 </select>
             </div>
-            <div class="row mb-3">
+            {{-- <div class="row mb-3">
                 <label for="profile">{{ __('Profile:') }}</label>
                 <input type="file" class="form-control" name="profile">
+            </div> --}}
+            <!-- File input element -->
+            <div class="row mb-3">
+                <label for="profile">{{ __('Profile') }}</label>
+                <div class="dropzone-wrapper">
+                    <div class="box-body"></div>
+                    <div class="dropzone-desc">
+                        <i class="fa-solid fa-circle-arrow-down fa-xl"></i>
+                        <p>Choose an image file or drag it here.</p>
+                    </div>
+                    <input type="file" name="profile" class="dropzone">
+                </div>
             </div>
             <div class="row mb-0">
 

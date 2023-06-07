@@ -53,14 +53,29 @@
         <i class="fa-solid fa-eye unhide"></i>
     </div>
 
-    <div class="">
+    <div class="row mb-3">
         <label for="roles">{{ __('Roles:') }}</label>
         {!! Form::select('roles[]', $roles, $userRole, ['class' => 'form-control', '']) !!}
     </div>
-    <div class="mb-3">
+    <div class="row mb-3">
+        <label for="profile">{{ __('Profile') }}</label>
+        <div class="dropzone-wrapper">
+            <div class="box-body">
+                @if ($user->profile)
+                    <img width="150" src="{{ url('profile/' . $user->profile) }}" />
+                @endif
+            </div>
+            {{-- <div class="dropzone-desc">
+                <i class="fa-solid fa-circle-arrow-down fa-xl"></i>
+                <p>Choose an image file or drag it here.</p>
+            </div> --}}
+            <input type="file" name="profile" class="dropzone">
+        </div>
+    </div>
+    {{-- <div class="mb-3">
         <label for="profile">{{ __('Profile:') }}</label>
         <input type="file" class="form-control" name="profile">
-    </div>
+    </div> --}}
 
     <button type="submit" class="btn btn-primary">Submit</button>
 

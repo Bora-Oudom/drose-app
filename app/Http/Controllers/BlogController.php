@@ -28,27 +28,30 @@ class BlogController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
         $this->validate($request,[
-            'title' => 'required',
-            'description' => 'required',
-        ]);
+            'title' => 'required|string',
+            'description' => 'required|string',
+            'image' => 'image|mimes:jpeg,png,gif',
+        ]);        
+        
         $blog = new Blog();
+
         $blog->title = $request->input('title');
         $blog->description = $request->input('description');
         $blog->user_id = auth()->user()->id; // Associate blog with current user
-        
+        // dd($request->hasFile('image'));
         if($request->hasFile('image')){
             $file = $request->file('image');
-            $filename = /** date('YmdHi') */ uniqid() . '.' . $file->getClientOriginalName();
+            $filename = /** date('YmdHi') */ uniqid() . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('image'), $filename);
             $blog->image = $filename;
-           
         }else {
             // Set a default image filename or any appropriate value
             $blog->image = 'default.jpg';
         }
         $blog->save();
+
         return redirect()->route('home')->with('success','Blog has been created');
     }
 
@@ -82,7 +85,6 @@ class BlogController extends Controller
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
-            
             if($request->hasFile('image')) {
                 // Delete old image
                 // dd($blog->image);
@@ -102,7 +104,7 @@ class BlogController extends Controller
             }
         }else {
             // Set default image if no image is uploaded
-            $input['image'] = 'default.png'; // Replace with your default image filename/path
+            $input['image'] = 'default.jpg'; // Replace with your default image filename/path
         }
         $blog->update($input);
         return redirect()->route('home')->with('success', 'Blog has been updated');
@@ -113,8 +115,9 @@ class BlogController extends Controller
      */
     public function destroy(string $id)
     {
-        Blog::find($id)->delete();
-
+        $blog = Blog::find($id);
+        $blog->delete();
+        unlink(public_path('image/' . $blog->image));
         return redirect()->back()->with('success', 'blog has been deleted');
     }
 }

@@ -22,7 +22,7 @@
                 @enderror
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-3 position-relative">
                 <label for="password">{{ __('Password') }}</label>
 
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
@@ -33,13 +33,17 @@
                         <strong>{{ $message }}</strong>
                     </span>
                 @enderror
+                <i class="fa-solid fa-eye-slash hide"></i>
+                <i class="fa-solid fa-eye unhide"></i>
             </div>
 
-            <div class="row mb-3">
+            <div class="row mb-3 position-relative">
                 <label for="password-confirm">{{ __('Confirm Password') }}</label>
 
                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required
                     autocomplete="new-password">
+                <i class="fa-solid fa-eye-slash hide"></i>
+                <i class="fa-solid fa-eye unhide"></i>
             </div>
 
             <div class="row mb-0">
