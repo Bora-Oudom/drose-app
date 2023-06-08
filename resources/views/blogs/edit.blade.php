@@ -41,12 +41,13 @@
                         <img width="200" src="{{ url('image/' . $blog->image) }}" />
                     @endif
                 </div>
-                {{-- <div class="dropzone-desc">
-                    <i class="fa-solid fa-circle-arrow-down fa-xl"></i>
-                    <p>Choose an image file or drag it here.</p>
-                </div> --}}
-                <input type="file" name="image" class="dropzone">
+                <input type="file" name="image" class="dropzone @error('image') is-invalid @enderror">
             </div>
+            @error('image')
+                <span class="invalid-feedback d-block" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror
         </div>
         <div class="row
                 mb-0">

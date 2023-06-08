@@ -89,7 +89,7 @@ class UserController extends Controller
             'email' => 'required|email|unique:users,email,'.$id,
             'password' => 'same:confirm-password',
             'roles' => 'required',
-            'profile' => 'nullable|max:2000'
+            'profile' => 'image|mimes:jpeg,png,gif',
         ]);
 
         // Get all input data and hash password if needed

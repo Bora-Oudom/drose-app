@@ -28,6 +28,9 @@
 // dropzone
 @import 'dropzone';
 
+// plan
+@import 'plan';
+
 //global variables
 // @property --rotate {
 //     syntax: '<angle>';
@@ -41,8 +44,9 @@
 // }
 
 body {
+    padding: 0 2rem;
+    margin: 0;
     background: #212534;
-    padding: 2rem;
     box-sizing: border-box;
 }
 

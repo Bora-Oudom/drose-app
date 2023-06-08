@@ -32,5 +32,6 @@ Route::group(['middleware' => ['auth']], function() {
 //Post Controller
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('blogs', \App\Http\Controllers\BlogController::class);
+    Route::resource('plans', \App\Http\Controllers\PlanController::class);
 });
 

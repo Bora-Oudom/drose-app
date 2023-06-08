@@ -31,7 +31,7 @@
             @enderror
         </div>
 
-        <div class="col-md-6 offset-md-4 ">
+        <div class="col-md-6 offset-md-4 mb-3">
             <div class="form-check p-0 m-0">
                 <input class="form-check-input me-2" type="checkbox" name="remember" id="remember"
                     {{ old('remember') ? 'checked' : '' }}>

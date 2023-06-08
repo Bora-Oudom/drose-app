@@ -10,7 +10,7 @@
                 <label for="name">{{ __('Title:') }}</label>
 
                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title"
-                    required placeholder="Blog Title">
+                    required placeholder="Blog Title" value="{{ old('title') }}">
                 @error('title')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -21,7 +21,7 @@
                 <label for="description">{{ __('Description:') }}</label>
 
                 <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required
-                    rows="4" cols="50"></textarea>
+                    rows="4" cols="50">{{ old('description') }}</textarea>
                 @error('description')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -37,8 +37,13 @@
                         <i class="fa-solid fa-circle-arrow-down fa-xl"></i>
                         <p>Choose an image file or drag it here.</p>
                     </div>
-                    <input type="file" name="image" class="dropzone">
+                    <input type="file" name="image" class="dropzone @error('image') is-invalid @enderror">
                 </div>
+                @error('image')
+                    <span class="invalid-feedback d-block" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                @enderror
             </div>
             <div class="row mb-0">
                 <button id="submit-button" type="submit" class="btn btn-primary">
