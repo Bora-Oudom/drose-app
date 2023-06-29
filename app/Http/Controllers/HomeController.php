@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Blog;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -24,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::paginate(5); //Blog::all()
         // dd($blogs);
         return view('home',['blogs' => $blogs]);
     }

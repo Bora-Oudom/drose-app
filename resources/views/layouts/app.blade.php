@@ -142,8 +142,6 @@
             });
         });
         
-    </script>
-    <script type="module">
         function readFile(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
@@ -192,8 +190,9 @@
         previewZone.addClass('hidden');
         reset(dropzone);
         });
+
+        
     </script>
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/min/dropzone.min.js"></script> --}}
 </body>
 
 </html>

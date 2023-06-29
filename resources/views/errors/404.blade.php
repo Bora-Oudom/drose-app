@@ -23,8 +23,8 @@
 </head>
 
 <body>
-    <div class="box">
-        <div class="box__ghost">
+    <div class="block">
+        <div class="block__ghost">
             <div class="symbol"></div>
             <div class="symbol"></div>
             <div class="symbol"></div>
@@ -32,12 +32,12 @@
             <div class="symbol"></div>
             <div class="symbol"></div>
 
-            <div class="box__ghost-container">
-                <div class="box__ghost-eyes">
-                    <div class="box__eye-left"></div>
-                    <div class="box__eye-right"></div>
+            <div class="block__ghost-container">
+                <div class="block__ghost-eyes">
+                    <div class="block__eye-left"></div>
+                    <div class="block__eye-right"></div>
                 </div>
-                <div class="box__ghost-bottom">
+                <div class="block__ghost-bottom">
                     <div></div>
                     <div></div>
                     <div></div>
@@ -45,19 +45,18 @@
                     <div></div>
                 </div>
             </div>
-            <div class="box__ghost-shadow"></div>
+            <div class="block__ghost-shadow"></div>
         </div>
 
-        <div class="box__description">
-            <div class="box__description-container">
-                <div class="box__description-title">Whoops!</div>
-                <div class="box__description-text">It seems like we couldn't find the page you were looking for</div>
+        <div class="block__description">
+            <div class="block__description-container">
+                <div class="block__description-title">Whoops!</div>
+                <div class="block__description-text">It seems like we couldn't find the page you were looking for</div>
             </div>
 
-            <a href="{{ route('home') }}" class="box__button">Go back</a>
+            <a href="https://codepen.io/diogo_ml_gomes/" target="_blank" class="block__button">Go back</a>
 
         </div>
-
     </div>
     <script type="module">
         //based on https://dribbble.com/shots/3913847-404-page
@@ -80,7 +79,7 @@
             mouseX = event.pageX / -pageX;
             xAxis = -mouseX * 100 - 100;
 
-            $('.box__ghost-eyes').css({
+            $('.block__ghost-eyes').css({
                 'transform': 'translate(' + xAxis + '%,-' + yAxis + '%)'
             });
 

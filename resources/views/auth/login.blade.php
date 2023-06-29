@@ -4,9 +4,8 @@
     <form class="form" method="POST" action="{{ route('login') }}">
         @csrf
         <h2 class="text-light mb-4">Login</h2>
-        <div class="row mb-3">
-            <label for="email">{{ __('Email Address') }}</label>
-
+        <div class="row mb-3 position-relative">
+            {{-- <label for="email">{{ __('Email Address') }}</label> --}}
             <input id="email" type="email" @error('email') is-invalid @enderror name="email" value="{{ old('email') }}"
                 required autocomplete="email" autofocus placeholder="Email">
 
@@ -18,8 +17,7 @@
         </div>
 
         <div class="row mb-3 position-relative">
-            <label for="password">{{ __('Password') }}</label>
-
+            {{-- <label for="password">{{ __('Password') }}</label> --}}
             <input id="password" type="password" @error('password') is-invalid @enderror name="password" required
                 autocomplete="current-password" placeholder="Password">
             <i class="fa-solid fa-eye-slash hide"></i>

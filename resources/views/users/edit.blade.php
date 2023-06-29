@@ -25,25 +25,25 @@
         {{-- <a class="btn btn-secondary text-light" href="{{ route('users.index') }}"> Back</a> --}}
     </div>
 
-    <div class="mb-3">
-        <label for="name">{{ __('Name:') }}</label>
+    <div class="row mb-3">
+        {{-- <label for="name">{{ __('Name:') }}</label> --}}
         {!! Form::text('name', null, ['placeholder' => 'Name', 'class' => 'form-control']) !!}
     </div>
 
-    <div class="mb-3">
-        <label for="email">{{ __('Email:') }}</label>
+    <div class="row mb-3">
+        {{-- <label for="email">{{ __('Email:') }}</label> --}}
         {!! Form::email('email', null, ['placeholder' => 'Email', 'class' => 'form-control']) !!}
     </div>
 
-    <div class="mb-3 position-relative">
-        <label for="password">{{ __('Password:') }}</label>
+    <div class="row mb-3 position-relative">
+        {{-- <label for="password">{{ __('Password:') }}</label> --}}
         {!! Form::password('password', ['placeholder' => 'Password', 'class' => 'form-control', 'id' => 'password']) !!}
         <i class="fa-solid fa-eye-slash hide"></i>
         <i class="fa-solid fa-eye unhide"></i>
     </div>
 
-    <div class="mb-3 position-relative">
-        <label for="confirm-password">{{ __('Confirm Password:') }}</label>
+    <div class="row mb-3 position-relative">
+        {{-- <label for="confirm-password">{{ __('Confirm Password:') }}</label> --}}
         {!! Form::password('confirm-password', [
             'placeholder' => 'Confirm Password',
             'class' => 'form-control',
@@ -54,11 +54,11 @@
     </div>
 
     <div class="row mb-3">
-        <label for="roles">{{ __('Roles:') }}</label>
+        {{-- <label for="roles">{{ __('Roles:') }}</label> --}}
         {!! Form::select('roles[]', $roles, $userRole, ['class' => 'form-control', '']) !!}
     </div>
     <div class="row mb-3">
-        <label for="profile">{{ __('Profile') }}</label>
+        {{-- <label for="profile">{{ __('Profile') }}</label> --}}
         <div class="dropzone-wrapper">
             <div class="box-body">
                 @if ($user->profile)
@@ -77,7 +77,9 @@
         <input type="file" class="form-control" name="profile">
     </div> --}}
 
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <div class="row">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
 
     {!! Form::close() !!}
 @endsection

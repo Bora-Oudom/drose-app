@@ -19,7 +19,8 @@ class AdminSeeder extends Seeder
         $user = \App\Models\User::factory()->create([
             'name' => 'DROSE',
             'email' => 'oudom@marinax.co.jp',
-            'password' => Hash::make('marinax')
+            'password' => Hash::make('marinax'),
+            'profile' => 'default.jpg',
         ]);
         // DB::table('users')->insert([
         //     'name' => 'DROSE',

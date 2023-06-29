@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $data = User::latest()->paginate(5);
+        $data = User::paginate(5);
   
         return view('users.index',['data' => $data])
             ->with('i', ($request->input('page', 1) - 1) * 5);
@@ -113,7 +113,7 @@ class UserController extends Controller
         // Check if a new profile image was uploaded
         if ($request->hasFile('profile')) {
             // Delete old profile image if it exists
-            if ($user->profile !== 'default.jpg' || $user->profile !== $user->profile) {
+            if ($user->profile !== 'default.jpg' && $user->profile == $user->profile) {
                 // Storage::public_path('profile/'.$user->profile);
                 unlink(public_path('profile/'.$user->profile));
             }
@@ -147,7 +147,9 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        unlink(public_path('profile/' . $user->profile));
+        if($user->profile !== 'default.jpg'){
+            unlink(public_path('profile/'.$user->profile));
+        }
         return redirect()->back()->with('success', 'User has been deleted');
     }
 }
