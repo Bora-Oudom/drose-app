@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Ubuntu);
 //variables
 
-.box {
+.block {
     width: 350px;
     height: 100%;
     max-height: 600px;
@@ -14,7 +14,7 @@
     transform: translate(-50%, -50%);
     padding: 30px 50px;
 
-    .box__ghost {
+    .block__ghost {
         padding: 15px 25px 25px;
         position: absolute;
         left: 50%;
@@ -136,7 +136,7 @@
             }
         }
 
-        .box__ghost-container {
+        .block__ghost-container {
             background: $primary-color;
             width: 100px;
             height: 100px;
@@ -145,7 +145,7 @@
             margin: 0 auto;
             animation: upndown 3s ease-in-out infinite;
 
-            .box__ghost-eyes {
+            .block__ghost-eyes {
                 position: absolute;
                 left: 50%;
                 top: 45%;
@@ -153,7 +153,7 @@
                 height: 12px;
                 width: 70px;
 
-                .box__eye-left {
+                .block__eye-left {
                     width: 12px;
                     height: 12px;
                     background: $l-purple;
@@ -162,7 +162,7 @@
                     position: absolute;
                     left: 0;
                 }
-                .box__eye-right {
+                .block__eye-right {
                     width: 12px;
                     height: 12px;
                     background: $l-purple;
@@ -173,7 +173,7 @@
                 }
             }
 
-            .box__ghost-bottom {
+            .block__ghost-bottom {
                 display: flex;
                 position: absolute;
                 top: 100%;
@@ -198,7 +198,7 @@
             }
         }
 
-        .box__ghost-shadow {
+        .block__ghost-shadow {
             height: 20px;
             box-shadow: 0 50px 15px 5px #3b3769;
             border-radius: 50%;
@@ -207,32 +207,32 @@
         }
     }
 
-    .box__description {
+    .block__description {
         position: absolute;
         bottom: 30px;
         left: 50%;
         transform: translateX(-50%);
 
-        .box__description-container {
+        .block__description-container {
             color: $primary-color;
             text-align: center;
             width: 200px;
             font-size: 16px;
             margin: 0 auto;
 
-            .box__description-title {
+            .block__description-title {
                 font-size: 64px;
                 letter-spacing: 0.5px;
             }
 
-            .box__description-text {
+            .block__description-text {
                 color: $t-purple;
                 line-height: 20px;
                 margin-top: 20px;
             }
         }
 
-        .box__button {
+        .block__button {
             display: block;
             position: relative;
             background: $pink;

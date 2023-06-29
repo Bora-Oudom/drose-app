@@ -22,7 +22,7 @@ class BlogController extends Controller
      */
     public function create()
     {
-       return view('blogs.create');
+       return view('blogs.create',);
     }
 
     /**
@@ -110,7 +110,7 @@ class BlogController extends Controller
                     // Delete old image
                     // dd($blog->image);
                     // Storage::delete('image/'.$blog->image);
-                    if($blog->image !== 'default.jpg'){
+                    if($blog->image !== 'default.jpg' && $blog->image !== $blog->image){
                         // dd($blog->image);
                         unlink(public_path('image/'.$blog->image));
                     }
@@ -141,7 +141,9 @@ class BlogController extends Controller
     {
         $blog = Blog::find($id);
         $blog->delete();
-        unlink(public_path('image/' . $blog->image));
+        if($blog->image !== 'default.jpg'){
+            unlink(public_path('image/'.$blog->image));
+        }
         return redirect()->back()->with('success', 'blog has been deleted');
     }
 }

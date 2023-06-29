@@ -12,7 +12,7 @@
         @csrf
         <h2 class="text-light">Edit Blog</h2>
         <div class="row mb-3">
-            <label for="name">{{ __('Title:') }}</label>
+            {{-- <label for="name">{{ __('Title:') }}</label> --}}
 
             <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title"
                 required placeholder="Blog Title" value="{{ $blog->title }}">
@@ -23,7 +23,7 @@
             @enderror
         </div>
         <div class="row mb-3">
-            <label for="description">{{ __('Description:') }}</label>
+            {{-- <label for="description">{{ __('Description:') }}</label> --}}
             <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required
                 rows="4" cols="50">{{ $blog->description }}</textarea>
             @error('description')
@@ -34,7 +34,7 @@
         </div>
 
         <div class="row mb-3">
-            <label for="image">{{ __('Upload Image:') }}</label>
+            {{-- <label for="image">{{ __('Upload Image:') }}</label> --}}
             <div class="dropzone-wrapper">
                 <div class="box-body">
                     @if ($blog->image)

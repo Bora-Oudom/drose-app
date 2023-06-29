@@ -1,12 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans:400,700');
+
 // Body
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+$noto: 'Nunito', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 //color
+$deep-sea: #09334f;
+$navy: #3a5e77;
+$sky: #a9ddf3;
+$cherry: #ea6e6e;
+$gold: #e8d170;
 $primary-color: #ffffff;
 $secondary-color: #080710;
 $form-background-color: rgba(255, 255, 255, 0.13);

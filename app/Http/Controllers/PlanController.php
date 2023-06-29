@@ -19,7 +19,7 @@ class PlanController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create($request)
     {
         //
     }
@@ -29,7 +29,16 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate request data
+        $validatedData = $request->validate([
+            'plan' => 'required|numeric',
+            'token' => 'required|string'
+        ]);
+        // find plan by ID from the database
+        $plan = Plan::find($validatedData['plan']);
+        
+        $subscription = $request->user()->newSubscription($request->plan, $plan->stripe_plan)->create($request->token);
+        return view('plan.success');
     }
 
     /**
@@ -37,7 +46,7 @@ class PlanController extends Controller
      */
     public function show(Plan $plan, Request $request)
     {
-         $intent = auth()->user()->createSetupintent();
+         $intent = auth()->user()->createSetupintent(); 
         return view('plan.show', ['plan' => $plan, 'intent'=> $intent]);
     }
 

@@ -25,8 +25,8 @@
 <body>
     <div class="exception-error">
     </div>
-    <div class="box">
-        <div class="box__ghost">
+    <div class="block">
+        <div class="block__ghost">
             <div class="symbol"></div>
             <div class="symbol"></div>
             <div class="symbol"></div>
@@ -34,12 +34,12 @@
             <div class="symbol"></div>
             <div class="symbol"></div>
 
-            <div class="box__ghost-container">
-                <div class="box__ghost-eyes">
-                    <div class="box__eye-left"></div>
-                    <div class="box__eye-right"></div>
+            <div class="block__ghost-container">
+                <div class="block__ghost-eyes">
+                    <div class="block__eye-left"></div>
+                    <div class="block__eye-right"></div>
                 </div>
-                <div class="box__ghost-bottom">
+                <div class="block__ghost-bottom">
                     <div></div>
                     <div></div>
                     <div></div>
@@ -47,16 +47,16 @@
                     <div></div>
                 </div>
             </div>
-            <div class="box__ghost-shadow"></div>
+            <div class="block__ghost-shadow"></div>
         </div>
 
-        <div class="box__description">
-            <div class="box__description-container">
-                <div class="box__description-title">403</div>
-                <div class="box__description-text">You have no permission to access these page</div>
+        <div class="block__description">
+            <div class="block__description-container">
+                <div class="block__description-title">403</div>
+                <div class="block__description-text">You have no permission to access these page</div>
             </div>
 
-            <a href="{{ route('home') }}" class="box__button">Go back</a>
+            <a href="{{ route('home') }}" class="block__button">Go back</a>
 
         </div>
 
@@ -82,7 +82,7 @@
             mouseX = event.pageX / -pageX;
             xAxis = -mouseX * 100 - 100;
 
-            $('.box__ghost-eyes').css({
+            $('.block__ghost-eyes').css({
                 'transform': 'translate(' + xAxis + '%,-' + yAxis + '%)'
             });
 

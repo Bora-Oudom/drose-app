@@ -7,7 +7,7 @@
             @csrf
             <h2 class="text-light mb-4">Create Blog</h2>
             <div class="row mb-3">
-                <label for="name">{{ __('Title:') }}</label>
+                {{-- <label for="name">{{ __('Title:') }}</label> --}}
 
                 <input id="title" type="text" class="form-control @error('title') is-invalid @enderror" name="title"
                     required placeholder="Blog Title" value="{{ old('title') }}">
@@ -18,10 +18,10 @@
                 @enderror
             </div>
             <div class="row mb-3 ">
-                <label for="description">{{ __('Description:') }}</label>
+                {{-- <label for="description">{{ __('Description:') }}</label> --}}
 
                 <textarea id="description" class="form-control @error('description') is-invalid @enderror" name="description" required
-                    rows="4" cols="50">{{ old('description') }}</textarea>
+                    rows="4" cols="50" placeholder="Description">{{ old('description') }}</textarea>
                 @error('description')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -30,7 +30,7 @@
             </div>
             <!-- File input element -->
             <div class="row mb-3">
-                <label for="image">{{ __('Upload Image:') }}</label>
+                {{-- <label for="image">{{ __('Upload Image:') }}</label> --}}
                 <div class="dropzone-wrapper">
                     <div class="box-body"></div>
                     <div class="dropzone-desc">

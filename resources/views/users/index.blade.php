@@ -52,9 +52,11 @@
                 </tr>
             @endforeach
         </table>
-
+        <div class="d-flex justify-content-center">
+            {!! $data->links() !!}
+        </div>
     </div>
 
     {{-- This code will render a pagination control for the $data object --}}
-    {!! $data->render() !!}
+    {{-- {!! $data->render() !!} --}}
 @endsection
